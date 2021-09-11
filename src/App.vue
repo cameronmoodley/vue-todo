@@ -3,7 +3,7 @@
 		<div class="todo-wrapper">
 			<div class="todo-container">
 				<TodoList :todos="todos" />
-				<Modal />
+				<TodoCreate />
 			</div>
 		</div>
 	</div>
@@ -11,13 +11,13 @@
 
 <script>
 	import TodoList from '@/components/TodoList.vue';
-	import Modal from '@/components/Modal.vue';
+	import TodoCreate from '@/components/TodoCreate.vue';
 
 	export default {
 		name: 'app',
 		components: {
 			TodoList,
-			Modal,
+			TodoCreate,
 		},
 		data() {
 			return {
@@ -93,5 +93,23 @@
 		margin-top: 20px;
 		padding: 10px;
 		border: none;
+	}
+
+	.app-form {
+		text-align: left;
+		.label {
+			display: block;
+			font-size: 18px;
+			font-weight: bold;
+		}
+
+		input {
+			padding: 10px;
+			font-size: 17px;
+		}
+
+		.form-control {
+			margin-top: 20px;
+		}
 	}
 </style>

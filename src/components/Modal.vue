@@ -9,17 +9,8 @@
 		<div class="modal" :class="{ 'is-active': isOpen }">
 			<div class="modal-content">
 				<span class="close" @click="isOpen = false">&times;</span>
-				<form class="app-form">
-					<div class="form-control">
-						<label class="label">Title</label>
-						<input type="text" class="control" />
-					</div>
-					<div class="form-control">
-						<label class="label">Description</label>
-						<input type="text" class="control" />
-					</div>
-					<button type="button" class="app-button is-primary">Confirm</button>
-				</form>
+				<!-- Slots allow you to embed HTML inside the wrapper component the name must be lowercase -->
+				<slot />
 			</div>
 		</div>
 	</div>
@@ -27,9 +18,10 @@
 <script>
 	export default {
 		data() {
-			return { isOpen: false };
+			return {
+				isOpen: false,
+			};
 		},
-		methods: {},
 	};
 </script>
 <style scoped lang="scss">
@@ -65,24 +57,6 @@
 
 		&:hover {
 			cursor: pointer;
-		}
-	}
-
-	.app-form {
-		text-align: left;
-		.label {
-			display: block;
-			font-size: 18px;
-			font-weight: bold;
-		}
-
-		input {
-			padding: 10px;
-			font-size: 17px;
-		}
-
-		.form-control {
-			margin-top: 20px;
 		}
 	}
 </style>
