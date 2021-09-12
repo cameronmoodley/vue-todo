@@ -8,7 +8,7 @@
 		</div>
 		<div class="modal" :class="{ 'is-active': isOpen }">
 			<div class="modal-content">
-				<span class="close" @click="isOpen = false">&times;</span>
+				<span class="close" @click="closeModal">&times;</span>
 				<!-- Slots allow you to embed HTML inside the wrapper component the name must be lowercase -->
 				<slot />
 			</div>
@@ -21,6 +21,19 @@
 			return {
 				isOpen: false,
 			};
+		},
+		methods: {
+			closeModal() {
+				this.isOpen = false;
+			},
+		},
+		watch: {
+			close(isClosed) {
+				// prevIsClosed
+				if (isClosed && this.isOpen) {
+					this.isOpen = false;
+				}
+			},
 		},
 	};
 </script>

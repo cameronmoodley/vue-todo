@@ -1,5 +1,5 @@
 <template lang="">
-	<modal>
+	<modal ref="modal">
 		<form class="app-form">
 			<div class="form-control">
 				<label class="label">Title</label>
@@ -33,16 +33,38 @@
 					title: '',
 					description: '',
 				},
+				forceClose: false,
 			};
+		},
+		// Computed methods are what?
+		computed: {
+			isFormValid() {
+				return this.validateForm(this.formData.title, 7) &&
+					this.validateForm(this.formData.description, 25)
+					? true
+					: false;
+			},
+			modal() {
+				return this.$refs.modal;
+			},
 		},
 		methods: {
 			submitForm() {
-				this.$emit('formSubmitted', { ...this.formData });
-				this.resetForm();
+				if (this.isFormValid) {
+					this.$emit('formSubmitted', { ...this.formData });
+					this.modal.closeModal();
+					this.resetForm();
+				}
 			},
 			resetForm() {
 				this.formData.title = '';
 				this.formData.description = '';
+			},
+			validateForm(value, charLen) {
+				if (value.length > charLen) {
+					return true;
+				}
+				return false;
 			},
 		},
 	};
