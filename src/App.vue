@@ -3,7 +3,7 @@
 		<div class="todo-wrapper">
 			<div class="todo-container">
 				<TodoList :todos="todos" />
-				<TodoCreate />
+				<TodoCreate @formSubmitted="createTodo" />
 			</div>
 		</div>
 	</div>
@@ -38,10 +38,13 @@
 						description: 'Maybe Tomorrow',
 					},
 				],
-				isModalOpen: false,
 			};
 		},
-		methods: {},
+		methods: {
+			createTodo(todo) {
+				this.todos.push(todo);
+			},
+		},
 	};
 </script>
 

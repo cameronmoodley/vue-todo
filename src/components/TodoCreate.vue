@@ -37,7 +37,12 @@
 		},
 		methods: {
 			submitForm() {
-				console.log(this.formData);
+				this.$emit('formSubmitted', { ...this.formData });
+				this.resetForm();
+			},
+			resetForm() {
+				this.formData.title = '';
+				this.formData.description = '';
 			},
 		},
 	};
