@@ -1,3 +1,5 @@
+import Vue from 'vue';
+
 const store = {
 	state: {
 		todos: [
@@ -27,13 +29,20 @@ const store = {
 				...todo,
 			});
 		},
+		updateTodo(state, todo) {
+			const index = state.todos.findIndex((t) => t._id === todo._id);
+			// state.todos[index] = todo;
+			Vue.set(state.todos, index, todo);
+			// state.todos = Access state object
+			// index = index of where the object is in state
+			// todo = the new value
+		},
 	},
 };
 
 store.dispatch = function(action, payload) {
-	if (!this.actions[action]) {
+	if (!this.actions[action])
 		throw new Error(`Action ${action} is not defined in the store`);
-	}
 
 	return this.actions[action](this.state, payload);
 };
