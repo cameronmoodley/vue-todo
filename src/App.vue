@@ -12,6 +12,7 @@
 <script>
 	import TodoList from '@/components/TodoList.vue';
 	import TodoCreate from '@/components/TodoCreate.vue';
+	import store from '@/store/';
 
 	export default {
 		name: 'app',
@@ -20,29 +21,11 @@
 			TodoCreate,
 		},
 		data() {
-			return {
-				todos: [
-					{
-						_id: '1',
-						title: 'Walk the dog',
-						description: 'Go to forest near the zoo',
-					},
-					{
-						_id: '2',
-						title: 'Buy Bread',
-						description: 'Whole wheat bread would be good',
-					},
-					{
-						_id: '3',
-						title: 'Learn Programming',
-						description: 'Maybe Tomorrow',
-					},
-				],
-			};
+			return { todos: store.state.todos };
 		},
 		methods: {
 			createTodo(todo) {
-				this.todos.push(todo);
+				store.dispatch('createTodo', todo);
 			},
 		},
 	};
