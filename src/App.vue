@@ -53,7 +53,7 @@
 		font-family: Avenir, Helvetica, Arial, sans-serif;
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
-		text-align: center;
+		text-align: left;
 		color: #2c3e50;
 		margin-top: 60px;
 	}
@@ -65,6 +65,8 @@
 		background-color: #795899;
 		color: #fff;
 		font-weight: bold;
+		text-align: center;
+		border: solid white 2px;
 
 		&:hover {
 			cursor: pointer;

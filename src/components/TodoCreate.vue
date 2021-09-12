@@ -14,6 +14,11 @@
 					v-model="formData.description"
 				></textarea>
 			</div>
+			<div class="app-errors">
+				<div class="form-error">
+					{{ formErrors }}
+				</div>
+			</div>
 			<button @click="submitForm" type="button" class="app-button is-primary">
 				Confirm
 			</button>
@@ -33,14 +38,14 @@
 					title: '',
 					description: '',
 				},
-				forceClose: false,
+				formErrors: '',
 			};
 		},
 		// Computed methods are what?
 		computed: {
 			isFormValid() {
 				return this.validateForm(this.formData.title, 7) &&
-					this.validateForm(this.formData.description, 25)
+					this.validateForm(this.formData.description, 10)
 					? true
 					: false;
 			},
@@ -51,9 +56,13 @@
 		methods: {
 			submitForm() {
 				if (this.isFormValid) {
+					this.formErrors = '';
 					this.$emit('formSubmitted', { ...this.formData });
 					this.modal.closeModal();
 					this.resetForm();
+				} else {
+					this.formErrors =
+						'Please fill out the form correctly, Title needs to be longer than 8 characters and desc longer than 10 characters!';
 				}
 			},
 			resetForm() {
@@ -69,4 +78,13 @@
 		},
 	};
 </script>
-<style lang=""></style>
+<style lang="scss">
+	.app {
+		&-errors {
+			color: red;
+		}
+	}
+	.form-error {
+		padding: 20px 0px;
+	}
+</style>
