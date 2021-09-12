@@ -23,6 +23,9 @@
 		data() {
 			return { todos: store.state.todos };
 		},
+		created() {
+			this.todos = store.dispatch('initStore');
+		},
 		methods: {
 			createTodo(todo) {
 				store.dispatch('createTodo', todo);
@@ -70,7 +73,7 @@
 		&-container {
 			flex-direction: column;
 			width: 400px;
-			min-height: 400px;
+			min-height: 100px;
 			background-color: #ededed;
 			border-radius: 10px;
 		}

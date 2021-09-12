@@ -70,7 +70,7 @@
 				this.editMode = false;
 			},
 			deleteTodo() {
-				alert('Delete');
+				store.dispatch('deleteTodo', this._id);
 			},
 		},
 	};
@@ -90,6 +90,7 @@
 			}
 			&-content-description {
 				font-size: 19px;
+				line-break: anywhere;
 			}
 		}
 	}
